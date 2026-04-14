@@ -80,7 +80,7 @@ const PROJECTS: Project[] = [
     id: 1,
     name: 'Creatures (PFE game)',
     description: 'A game My teammate and I have made during our final year at ISAMM , an action-adventure game with shapeshifting mechanics',
-    images: ['https://drive.google.com/uc?export=view&id=1yXCdSDSRJs3l0Gy1Y0tlmEE34iWvUgoq'],
+    images: ['/Picture2.png'],
     videoUrl: 'https://www.youtube.com/embed/wmpYWJrmVjA', // Placeholder
     prototypeUrl: 'https://drive.google.com/drive/folders/1pw01koZsmOj3uVqeJSzzELcRaKNZwGKG?usp=drive_link'
   },
@@ -88,7 +88,7 @@ const PROJECTS: Project[] = [
     id: 2,
     name: 'Bubble brawl (GGJ 2025)',
     description: 'GGJ 2025 submission , This game features bubble butt kicking , fun for Duos trying to duke it out bubble style!.',
-    images: ['https://drive.google.com/uc?export=view&id=1G92HqtcviIy3tiSwYBAO_UqKlDdtmquM'],
+    images: ['/game_menu_background.jpg'],
     videoUrl: 'https://youtube.com/embed/wzsO8o1S94g', // Placeholder
     prototypeUrl: 'https://ggjv4.s3.us-west-1.amazonaws.com/files/games/2025/828780/exec/Ramdal%20Games%20GGJ%20Build_0.7z?VersionId=A9CcOacIZeUjM09ypSZolDK_EX74ub6l'
   }
@@ -221,7 +221,7 @@ const HomePage = ({ setPage }: { setPage: (p: Page) => void }) => {
           <div className="gradient-border w-48 h-48 md:w-64 md:h-64 p-1">
             <div className="w-full h-full rounded-full overflow-hidden bg-bg-dark flex items-center justify-center relative">
               <img 
-                src="https://drive.google.com/uc?export=view&id=1yXCdSDSRJs3l0Gy1Y0tlmEE34iWvUgoq" 
+                src="/Ahmed.jpg" 
                 alt="Profile" 
                 className="w-full h-full object-cover opacity-80"
                 referrerPolicy="no-referrer"
