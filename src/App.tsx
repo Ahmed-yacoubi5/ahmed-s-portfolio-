@@ -27,8 +27,8 @@ import {
 
 // Import assets
 import ahmedImg from './assets/Ahmed-ai.png';
-import project1Img from './assets/Picture2.png';
-import creatureLogoImg from './assets/creature_logo.png';
+import creatureEnvImg from './assets/Creature Environment.png';
+import creatureLandscapeImg from './assets/Creatures landscape.png';
 import project2Img from './assets/game_menu_background.jpg';
 import zouhairImg1 from './assets/Screenshot 2026-08-14 014709.png';
 import zouhairImg2 from './assets/Screenshot 2026-08-14 014806.png';
@@ -99,7 +99,7 @@ const PROJECTS: Project[] = [
     id: 1,
     name: 'Creatures (PFE game)',
     description: 'A game My teammate and I have made during our final year at ISAMM , an action-adventure game with shapeshifting mechanics',
-    images: [project1Img, creatureLogoImg],
+    images: [creatureEnvImg, creatureLandscapeImg],
     videoUrl: 'https://www.youtube.com/embed/wmpYWJrmVjA', // Placeholder
     prototypeUrl: 'https://drive.google.com/drive/folders/1pw01koZsmOj3uVqeJSzzELcRaKNZwGKG?usp=drive_link'
   },
