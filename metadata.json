@@ -1,5 +1,8 @@
 {
-  "name": "Modern Personal Portfolio",
-  "description": "A sleek, dark-themed personal portfolio website with smooth animations and a professional aesthetic.",
-  "requestFramePermissions": []
+  "name": "Ahmed Elyaakoubi — Portfolio",
+  "description": "Portfolio of Ahmed Elyaakoubi featuring game projects, marketing materials, and skills.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }
