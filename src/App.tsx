@@ -26,8 +26,9 @@ import {
 } from 'lucide-react';
 
 // Import assets
-import ahmedImg from './assets/Ahmed.jpg';
+import ahmedImg from './assets/Ahmed-ai.png';
 import project1Img from './assets/Picture2.png';
+import creatureLogoImg from './assets/creature_logo.png';
 import project2Img from './assets/game_menu_background.jpg';
 import zouhairImg1 from './assets/Screenshot 2026-08-14 014709.png';
 import zouhairImg2 from './assets/Screenshot 2026-08-14 014806.png';
@@ -98,7 +99,7 @@ const PROJECTS: Project[] = [
     id: 1,
     name: 'Creatures (PFE game)',
     description: 'A game My teammate and I have made during our final year at ISAMM , an action-adventure game with shapeshifting mechanics',
-    images: [project1Img],
+    images: [project1Img, creatureLogoImg],
     videoUrl: 'https://www.youtube.com/embed/wmpYWJrmVjA', // Placeholder
     prototypeUrl: 'https://drive.google.com/drive/folders/1pw01koZsmOj3uVqeJSzzELcRaKNZwGKG?usp=drive_link'
   },
@@ -338,14 +339,13 @@ const HomePage = ({ setPage }: { setPage: (p: Page) => void }) => {
           className="relative mb-12"
         >
           <div className="gradient-border w-48 h-48 md:w-64 md:h-64 p-1">
-            <div className="w-full h-full rounded-full overflow-hidden bg-bg-dark flex items-center justify-center relative">
+            <div className="w-full h-full rounded-full overflow-hidden bg-bg-dark flex items-center justify-center relative shadow-2xl">
               <img 
                 src={ahmedImg} 
-                alt="Profile" 
-                className="w-full h-full object-cover opacity-80"
+                alt="Ahmed Elyaakoubi" 
+                className="w-full h-full object-cover object-top"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/60 to-transparent" />
             </div>
           </div>
           <div className="absolute -inset-4 bg-accent-blue/20 blur-3xl rounded-full -z-10 animate-pulse" />
@@ -481,17 +481,17 @@ const ProjectSlideshow = ({ images, name }: { images: string[], name: string }) 
   if (images.length === 0) return null;
 
   return (
-    <div className="relative aspect-video overflow-hidden group/slideshow">
+    <div className="relative aspect-video overflow-hidden group/slideshow bg-black/40">
       <AnimatePresence mode="wait">
         <motion.img
           key={currentIndex}
           src={images[currentIndex]}
           alt={`${name} screenshot ${currentIndex + 1}`}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-cover object-center transition-transform duration-500 group-hover/slideshow:scale-105"
           referrerPolicy="no-referrer"
         />
       </AnimatePresence>
@@ -499,35 +499,39 @@ const ProjectSlideshow = ({ images, name }: { images: string[], name: string }) 
       {images.length > 1 && (
         <>
           <button
+            type="button"
             onClick={prevSlide}
-            className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white opacity-0 group-hover/slideshow:opacity-100 transition-opacity hover:bg-black/60 z-20"
+            aria-label="Previous slide"
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md flex items-center justify-center text-white opacity-0 group-hover/slideshow:opacity-100 transition-opacity hover:bg-accent-blue z-20 cursor-pointer"
           >
-            <ChevronLeft size={20} />
+            <ChevronLeft size={18} />
           </button>
           <button
+            type="button"
             onClick={nextSlide}
-            className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center text-white opacity-0 group-hover/slideshow:opacity-100 transition-opacity hover:bg-black/60 z-20"
+            aria-label="Next slide"
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md flex items-center justify-center text-white opacity-0 group-hover/slideshow:opacity-100 transition-opacity hover:bg-accent-blue z-20 cursor-pointer"
           >
-            <ChevronRight size={20} />
+            <ChevronRight size={18} />
           </button>
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-20 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/10">
             {images.map((_, i) => (
-              <div
+              <button
+                type="button"
                 key={i}
-                className={`w-1.5 h-1.5 rounded-full transition-colors ${
-                  i === currentIndex ? 'bg-accent-blue' : 'bg-white/30'
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setCurrentIndex(i);
+                }}
+                aria-label={`Go to slide ${i + 1}`}
+                className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                  i === currentIndex ? 'w-4 bg-accent-blue' : 'w-1.5 bg-white/40 hover:bg-white/70'
                 }`}
               />
             ))}
           </div>
         </>
       )}
-      
-      <div className="absolute inset-0 bg-bg-dark/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-        <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white">
-          <Play fill="currentColor" size={20} />
-        </div>
-      </div>
     </div>
   );
 };
