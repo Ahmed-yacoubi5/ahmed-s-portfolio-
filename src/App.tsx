@@ -1071,6 +1071,42 @@ const ContactPage = () => {
   );
 };
 
+// --- Background Pattern ---
+
+const GameBackgroundPattern = () => {
+  return (
+    <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden select-none" aria-hidden="true">
+      {/* Ambient background glows */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-accent-blue/5 rounded-full blur-3xl -translate-y-1/2" />
+      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-accent-purple/5 rounded-full blur-3xl" />
+      
+      {/* Alternating Game Controller Pattern in subtle Blue and White */}
+      <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern
+            id="gamepad-pattern"
+            width="130"
+            height="130"
+            patternUnits="userSpaceOnUse"
+            patternTransform="rotate(-15)"
+          >
+            {/* Subtle Blue Gamepad Icon */}
+            <g transform="translate(16, 16) scale(1.3)" stroke="#3b82f6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity="0.12">
+              <path d="M6 12h4m-2-2v4m10-2h.01m2-2h.01M6 6h12a6 6 0 0 1 6 6v3a3 3 0 0 1-3 3h-.5a2.5 2.5 0 0 0-2.12 1.18l-.58.88A2.5 2.5 0 0 1 14.7 21h-5.4a2.5 2.5 0 0 1-2.1-1.04l-.58-.88A2.5 2.5 0 0 0 4.5 18H4a3 3 0 0 1-3-3v-3a6 6 0 0 1 6-6Z" />
+            </g>
+
+            {/* Subtle White Gamepad Icon (Alternating offset position) */}
+            <g transform="translate(81, 81) scale(1.3)" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity="0.06">
+              <path d="M6 12h4m-2-2v4m10-2h.01m2-2h.01M6 6h12a6 6 0 0 1 6 6v3a3 3 0 0 1-3 3h-.5a2.5 2.5 0 0 0-2.12 1.18l-.58.88A2.5 2.5 0 0 1 14.7 21h-5.4a2.5 2.5 0 0 1-2.1-1.04l-.58-.88A2.5 2.5 0 0 0 4.5 18H4a3 3 0 0 1-3-3v-3a6 6 0 0 1 6-6Z" />
+            </g>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#gamepad-pattern)" />
+      </svg>
+    </div>
+  );
+};
+
 // --- Main App ---
 
 export default function App() {
@@ -1082,7 +1118,8 @@ export default function App() {
   }, [page]);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <GameBackgroundPattern />
       <Navbar currentPage={page} setPage={setPage} />
       
       <main>
