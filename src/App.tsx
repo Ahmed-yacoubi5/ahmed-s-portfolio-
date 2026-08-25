@@ -47,7 +47,6 @@ type Page = 'home' | 'projects' | 'marketing' | 'contact';
 
 interface Skill {
   name: string;
-  level: number;
   category: string;
 }
 
@@ -69,13 +68,13 @@ interface Project {
 
 // --- Data ---
 const SKILLS: Skill[] = [
-  { name: 'Unity', level: 95, category: 'Game dev' },
-  { name: 'Unreal', level: 50, category: 'Game dev' },
-  { name: 'Blender', level: 60, category: '3D modeling' },
-  { name: 'Canva', level: 85, category: 'Graphic design' },
-  { name: 'Git / GitHub', level: 92, category: 'Version control' },
-  { name: 'Digital marketing', level: 75, category: 'Marketing' },
-  { name: 'Video editing', level: 75, category: 'Marketing' }
+  { name: 'Unity', category: 'Game dev' },
+  { name: 'Unreal', category: 'Game dev' },
+  { name: 'Blender', category: '3D modeling' },
+  { name: 'Canva', category: 'Graphic design' },
+  { name: 'Git / GitHub', category: 'Version control' },
+  { name: 'Digital marketing', category: 'Marketing' },
+  { name: 'Video editing', category: 'Marketing' }
 ];
 
 const EXPERIENCE: Experience[] = [
@@ -398,30 +397,24 @@ const HomePage = ({ setPage }: { setPage: (p: Page) => void }) => {
           <p className="text-gray-400 max-w-xl mx-auto">A collection of technologies and tools I've mastered over the years.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {SKILLS.map((skill, i) => (
             <motion.div
               key={skill.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="glass-card p-6 hover:bg-white/10 transition-colors group"
+              transition={{ delay: i * 0.08 }}
+              className="glass-card p-6 hover:bg-white/10 transition-colors group flex flex-col justify-between"
             >
-              <div className="flex justify-between items-center mb-4">
-                <span className="text-xs font-mono text-accent-blue uppercase tracking-widest">{skill.category}</span>
-                <span className="text-sm font-bold">{skill.level}%</span>
+              <div className="mb-4">
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-mono tracking-widest uppercase bg-accent-blue/10 text-accent-blue border border-accent-blue/20">
+                  {skill.category}
+                </span>
               </div>
-              <h3 className="text-xl mb-4">{skill.name}</h3>
-              <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${skill.level}%` }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1, delay: 0.5 }}
-                  className="h-full bg-gradient-to-r from-accent-blue to-accent-purple"
-                />
-              </div>
+              <h3 className="text-xl font-medium tracking-tight text-white group-hover:text-accent-blue transition-colors">
+                {skill.name}
+              </h3>
             </motion.div>
           ))}
         </div>
