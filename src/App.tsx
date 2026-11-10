@@ -42,6 +42,13 @@ import img28 from './assets/28.jpg';
 import img29 from './assets/29.jpg';
 import img30 from './assets/30.jpg';
 
+// NGO project 2025 assets
+const ngoLogo = '/assets/aistudio/guardians-of-the-mediterranean-high-resolution-logo_f53436d1.png';
+const ngoPoster = '/assets/aistudio/Guardians_of_the_MEDITERRANEAN_66b0a8f2.png';
+const ngoBanner = '/assets/aistudio/Beach_Getaway_Travel_Youtube_Thumbnail_for_Social_Media_India__31e54661.png';
+const ngoCleanPost = '/assets/aistudio/Blue_And_Green_Retro_Minimalist_Beach_Gear_Facebook_Post_1d636398.png';
+const ngoStory = '/assets/aistudio/Blue_Simple_Beach_Activity_Ideas_Instagram_Story_a9bbe22c.png';
+
 // --- Types ---
 type Page = 'home' | 'projects' | 'marketing' | 'contact';
 
@@ -207,6 +214,53 @@ const MARKETING_MATERIALS: MarketingItem[] = [
         type: 'image',
         url: zouhairImg2,
         title: 'Poster concept 2'
+      }
+    ]
+  },
+  {
+    id: 4,
+    title: 'NGO project 2025 (for fun)',
+    description: 'i decided to imagine what it would be like to make a campaing for a fictional NGO for protecting marine life and preventing coastal pollution',
+    category: 'Campaign Design',
+    media: [
+      
+      {
+        type: 'image',
+        url: ngoPoster,
+        title: 'Marine Preservation Poster'
+      },
+      {
+        type: 'image',
+        url: ngoBanner,
+        title: 'Coastal Awareness Banner (Klebia, Nabeul)'
+      },
+      {
+        type: 'image',
+        url: ngoCleanPost,
+        title: 'Beach Cleanup Call to Action'
+      },
+      {
+        type: 'image',
+        url: ngoStory,
+        title: 'The Ideal Scenario Story'
+      },
+      {
+        type: 'image',
+        url: ngoLogo,
+        title: 'Brand Identity Logo'
+      }
+    ]
+  },
+  {
+    id: 5,
+    title: 'ODEC 2024 passion project',
+    description: 'This is just a fun project i did to document my ODEC 2024 experience in a fun , amusing way',
+    category: 'Video Production',
+    media: [
+      {
+        type: 'video',
+        url: 'https://www.youtube.com/embed/keIRqj40-vE?si=Ym7HHSl5xRxiPOvv',
+        title: 'ODEC 2024 Experience'
       }
     ]
   }
@@ -611,34 +665,26 @@ const ModularMediaContainer = ({
   const [slideIndex, setSlideIndex] = useState(0);
 
   if (media.type === 'video') {
-    const youtubeId = media.url.split('/').pop()?.split('?')[0] || '';
-    const previewUrl = `https://img.youtube.com/vi/${youtubeId}/0.jpg`;
     return (
-      <div
-        onClick={() => onOpenLightbox({ type: 'video', url: media.url, title: media.title })}
-        className="relative rounded-xl overflow-hidden aspect-video bg-black/40 border border-white/5 group/media cursor-pointer"
-      >
-        <img
-          src={previewUrl}
-          alt={media.title || 'Video asset'}
-          className="w-full h-full object-cover opacity-80 group-hover/media:opacity-100 transition-all duration-500 group-hover/media:scale-105"
-          referrerPolicy="no-referrer"
+      <div className="relative rounded-xl overflow-hidden aspect-video bg-black/40 border border-white/10 group/media">
+        <iframe
+          width="100%"
+          height="100%"
+          src={media.url}
+          title={media.title || 'Video Player'}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className="w-full h-full"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/90 via-transparent to-transparent flex items-end p-4">
-          <div className="flex items-center justify-between w-full">
-            <span className="text-xs font-medium text-white font-sans truncate pr-2">
-              {media.title || 'Video Player'}
-            </span>
-            <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider bg-accent-blue/30 text-accent-blue border border-accent-blue/30">
-              Video
-            </span>
-          </div>
-        </div>
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-          <div className="w-11 h-11 rounded-full bg-accent-blue/20 backdrop-blur-sm flex items-center justify-center text-accent-blue border border-accent-blue/30 group-hover/media:bg-accent-blue group-hover/media:text-white transition-all duration-300 shadow-[0_0_20px_rgba(59,130,246,0.4)]">
-            <Play fill="currentColor" size={18} />
-          </div>
-        </div>
+        <button
+          type="button"
+          onClick={() => onOpenLightbox({ type: 'video', url: media.url, title: media.title })}
+          className="absolute top-2 right-2 opacity-0 group-hover/media:opacity-100 transition-opacity bg-black/70 hover:bg-accent-blue text-white p-1.5 rounded-lg z-20 backdrop-blur-sm border border-white/10 cursor-pointer"
+          title="Expand Video"
+        >
+          <Maximize2 size={14} />
+        </button>
       </div>
     );
   }
